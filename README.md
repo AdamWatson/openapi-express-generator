@@ -1,8 +1,6 @@
-<h1>THIS PACKAGE IS NOT MAINTAINED ANYMORE. IF YOU WANT TO MAINTAIN IT DROP ME A LINE AT fran.mendez[at]hey.com.</h1>
-
 <p align="center"><img src="logo.png"></p>
 <p align="center">
-  <strong>OpenAPI Node.js<br>Code Generator</strong>
+  <strong>OpenAPI Node.js / Express<br>Code Generator</strong>
 </p>
 <br><br>
 Use your API OpenAPI 3.x/Swagger 2 definition to generate Node.js ES7-compliant code for your API.
