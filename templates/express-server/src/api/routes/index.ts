@@ -10,9 +10,9 @@ import {{camelCase this}}Routes from './{{this}}';
 const router = express.Router();
 {{#each @root.swagger.endpoints}}
 {{#endsWith @root.swagger.basePath '/'}}
-router.use('{{@root.swagger.basePath}}{{..}}',{{camelCase ..}}Routes ));
+router.use('{{@root.swagger.basePath}}{{..}}',{{camelCase ..}}Routes);
 {{else}}
-router.use('{{@root.swagger.basePath}}/{{..}}',{{camelCase ..}}Routes ));
+router.use('{{@root.swagger.basePath}}/{{..}}',{{camelCase ..}}Routes);
 {{/endsWith}}
 {{/each}}
 
