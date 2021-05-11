@@ -12,43 +12,36 @@ const router = express.Router();
  {{/each}}
  */
 router.{{@key}}('{{../../subresource}}', async (request, response, next) => {
-  {{#if ../requestBody}}
-  const payload: request.body;
-  {{/if}}
-
+  // Extract the payload, parameters, and user info from the request object
+  const payload = request.body;
   const parameters = {
-    {{#each ../parameters}}
-      {{#equal this.in "query"}}
-        {{{quote ../name}}}: request.query['{{../name}}']{{#unless @last}},{{/unless}}
-      {{/equal}}
-      {{#equal this.in "path"}}
-        {{{quote ../name}}}: request.params['{{../name}}']{{#unless @last}},{{/unless}}
-      {{/equal}}
-      {{#equal this.in "header"}}
-        {{{quote ../name}}}: request.header['{{../name}}']{{#unless @last}},{{/unless}}
-      {{/equal}}
-    {{/each}}
+  {{#each ../parameters}}
+    {{#equal this.in "query"}}
+      {{{quote ../name}}}: request.query['{{../name}}'],
+    {{/equal}}
+    {{#equal this.in "path"}}
+      {{{quote ../name}}}: request.params['{{../name}}'],
+    {{/equal}}
+    {{#equal this.in "header"}}
+      {{{quote ../name}}}: request.header['{{../name}}'],
+    {{/equal}}
+  {{/each}}
   };
+  const user = request.user;
 
-    const user = request.user;
+  const options = {
+      payload,
+      parameters,
+      user,
+  }
 
-    const options = {
-        payload,
-        parameters,
-        user,
-    }
-
-    try {
-      const result = await {{camelCase ../../../operation_name}}Service.{{../operationId}}(options);
-      {{#ifNoSuccessResponses ../responses}}
-        response.header('X-Result', result.data).status(200).send();
-      {{else}}
-        response.status(result.status || 200).send(result.data);
-      {{/ifNoSuccessResponses}}
-      } catch (err) {
-        next(err);
-      }
-    });
+  try {
+    const result = await {{camelCase ../../../operation_name}}Service.{{../operationId}}(options);
+    response.status(result.status || 200).send(result.data);
+  } catch (err) {
+      next(err);
+  }
+});
     {{/validMethod}}
   {{/each}}
 {{/each}}
@@ -62,25 +55,21 @@ router.{{@key}}('{{../../subresource}}', async (request, response, next) => {
  {{/each}}
  */
 router.{{@key}}('{{../../subresource}}', async (request, response, next) => {
- 
-  {{#if ../requestBody}}
-  const payload: request.body;
-  {{/if}}
-  
+  // Extract the payload, parameters, and user info from the request object
+  const payload = request.body;
   const parameters = {
-    {{#each ../parameters}}
-      {{#equal this.in "query"}}
-        {{{quote ../name}}}: request.query['{{../name}}']{{#unless @last}},{{/unless}}
-      {{/equal}}
-      {{#equal this.in "path"}}
-        {{{quote ../name}}}: request.params['{{../name}}']{{#unless @last}},{{/unless}}
-      {{/equal}}
-      {{#equal this.in "header"}}
-        {{{quote ../name}}}: request.header['{{../name}}']{{#unless @last}},{{/unless}}
-      {{/equal}}
-    {{/each}}
+  {{#each ../parameters}}
+    {{#equal this.in "query"}}
+      {{{quote ../name}}}: request.query['{{../name}}'],
+    {{/equal}}
+    {{#equal this.in "path"}}
+      {{{quote ../name}}}: request.params['{{../name}}'],
+    {{/equal}}
+    {{#equal this.in "header"}}
+      {{{quote ../name}}}: request.header['{{../name}}'],
+    {{/equal}}
+  {{/each}}
   };
-  
   const user = request.user;
 
   const options = {

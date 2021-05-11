@@ -1,4 +1,5 @@
-const ServerError = require('../../lib/error');
+import { ServiceRequestHandler } from './types';
+
 {{#each operation}}
   {{#each this.path}}
     {{#validMethod @key}}
@@ -12,27 +13,16 @@ const ServerError = require('../../lib/error');
  * @throws {Error}
  * @return {Promise}
  */
-module.exports.{{../operationId}} = async (options) => {
+export const {{../operationId}}: ServiceRequestHandler<any, any, any> = async (options) => {
   // Implement your business logic here...
   //
-  // This function should return as follows:
-  //
-  // return {
-  //   status: 200, // Or another success code.
-  //   data: [] // Optional. You can put whatever you want here.
-  // };
-  //
   // If an error happens during your business logic implementation,
-  // you should throw an error as follows:
-  //
-  // throw new ServerError({
-  //   status: 500, // Or another error code.
-  //   error: 'Server Error' // Or another error message.
-  // });
+  // you can just throw any Error class.
 
+  // Currently returns a 501 not implemented. Change to a 200 level code on correct implementation
   return {
-    status: 200,
-    data: '{{../operationId}} ok!'
+    status: 501,
+    // data: '{{../operationId}} ok!'
   };
 };
 
