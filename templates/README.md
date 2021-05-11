@@ -43,9 +43,9 @@ And some template files like this:
 |+ api/
  |- index.js           // This is a static template, it contains placeholders that will be filled in, e.g. includes for each file in routes
  |+ routes/
-  |- ___.route.js      // This file will be generated for each operation and contains skeleton code for each method for an operation.
+  |- ___.route.ts      // This file will be generated for each operation and contains skeleton code for each method for an operation.
 ```
-The first important thing to notice here is the triple underscore in `___.route.js`. It will be replaced by the name of the path.
+The first important thing to notice here is the triple underscore in `___.route.ts`. It will be replaced by the name of the path.
 
 In this example the generated directory structure will be like this:
 ```
