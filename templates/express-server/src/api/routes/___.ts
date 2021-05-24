@@ -23,7 +23,7 @@ router.{{@key}}('{{../../subresource}}', async (request, response, next) => {
       {{{quote ../name}}}: request.params['{{../name}}'],
     {{/equal}}
     {{#equal this.in "header"}}
-      {{{quote ../name}}}: request.header['{{../name}}'],
+      {{{quote ../name}}}: request.header('{{../name}}'),
     {{/equal}}
   {{/each}}
   };

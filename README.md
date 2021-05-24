@@ -3,6 +3,11 @@
   <strong>OpenAPI Node.js / Express<br>Code Generator</strong>
 </p>
 <br><br>
+THIS IS A FORKED VERSION OF THE PROJECT, AND IS NOT REGULARLY MAINTAINED.
+- Changes are made to the output files to switch from JavaScript to Typescript. 
+- Additional parameters are added to the service stubs so that they can infer type information more easily
+- A user field is pulled from the request to work in conjunction with authentication middleware. This is passed to the services so DB / cache lookups can take the currently authenticated user into consideration.
+<br><br>
 Use your API OpenAPI 3.x/Swagger 2 definition to generate Node.js ES7-compliant code for your API.
 
 The generated code features:
